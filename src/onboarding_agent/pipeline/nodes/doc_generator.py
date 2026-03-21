@@ -42,8 +42,8 @@ def _truncate_tree(tree: Tree, max_depth: int = 3, depth: int = 0) -> Tree:
 
 
 def _safe_str(value: str | None, fallback: str = "") -> str:
-    """Safely convert a value to string, avoiding 'None' display."""
-    if value is None or value == "None" or value == "":
+    """Safely convert a value to string, avoiding 'None'/'unknown' display."""
+    if value is None or value.lower() in ("none", "unknown", "null", "") if value else True:
         return fallback
     return value
 

@@ -136,7 +136,7 @@ function matchesSearch(text: string, query: string): boolean {
 }
 
 function safeStr(val: string | null | undefined, fallback = ""): string {
-  if (!val || val === "None" || val === "null") return fallback;
+  if (!val || val === "None" || val === "null" || val === "unknown" || val === "none") return fallback;
   return val;
 }
 
@@ -164,20 +164,20 @@ function IdentitySection({
         <table className="info-table">
           <tbody>
             {[
-              ["Language", `${safeStr(tech.primary_language)} ${safeStr(tech.language_version)}`.trim()],
-              ["Framework", `${safeStr(tech.framework, "—")} ${safeStr(tech.framework_version)}`.trim()],
-              ["Build", safeStr(tech.build_tool, "—")],
-              ["Test", safeStr(tech.test_framework, "—")],
-              ["Linter", safeStr(tech.linter, "—")],
-              ["Formatter", safeStr(tech.formatter, "—")],
-              ["Deployment", safeStr(tech.deployment_target, "—")],
+              ["Language", [safeStr(tech.primary_language), safeStr(tech.language_version)].filter(Boolean).join(" ")],
+              ["Framework", [safeStr(tech.framework), safeStr(tech.framework_version)].filter(Boolean).join(" ")],
+              ["Build", safeStr(tech.build_tool)],
+              ["Test", safeStr(tech.test_framework)],
+              ["Linter", safeStr(tech.linter)],
+              ["Formatter", safeStr(tech.formatter)],
+              ["Deployment", safeStr(tech.deployment_target)],
             ]
-              .filter(([, val]) => val !== "—" || true) // show all rows
+              .filter(([, val]) => val !== "")
               .filter(([label, val]) => matchesSearch(`${label} ${val}`, search))
               .map(([label, val]) => (
                 <tr key={label}>
                   <td className="label-cell">{label}</td>
-                  <td>{val || "—"}</td>
+                  <td>{val}</td>
                 </tr>
               ))}
           </tbody>
@@ -769,22 +769,30 @@ function DevWorkflowSection({
 
       <table className="info-table">
         <tbody>
-          <tr>
-            <td className="label-cell">Build Tool</td>
-            <td>{safeStr(tech?.build_tool, "Not detected")}</td>
-          </tr>
-          <tr>
-            <td className="label-cell">Linter</td>
-            <td>{safeStr(tech?.linter, "Not configured")}</td>
-          </tr>
-          <tr>
-            <td className="label-cell">Formatter</td>
-            <td>{safeStr(tech?.formatter, "Not configured")}</td>
-          </tr>
-          <tr>
-            <td className="label-cell">Pre-commit Hooks</td>
-            <td>{quality?.has_pre_commit_hooks ? "Configured" : "Not configured"}</td>
-          </tr>
+          {[
+            ["Build Tool", safeStr(tech?.build_tool)],
+            ["Linter", safeStr(tech?.linter)],
+            ["Formatter", safeStr(tech?.formatter)],
+            ["Pre-commit Hooks", quality?.has_pre_commit_hooks ? "Configured" : ""],
+          ]
+            .filter(([, val]) => val !== "")
+            .map(([label, val]) => (
+              <tr key={label}>
+                <td className="label-cell">{label}</td>
+                <td>{val}</td>
+              </tr>
+            ))}
+          {[
+            safeStr(tech?.build_tool),
+            safeStr(tech?.linter),
+            safeStr(tech?.formatter),
+          ].every((v) => !v) && !quality?.has_pre_commit_hooks && (
+            <tr>
+              <td colSpan={2} style={{ color: "var(--text-light)" }}>
+                No build tools, linters, formatters, or pre-commit hooks detected.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 
