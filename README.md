@@ -14,6 +14,7 @@ An intelligent, LangGraph-powered pipeline that analyzes any GitHub repository a
 
 - [Problem Statement](#problem-statement)
 - [What It Does](#what-it-does)
+- [Demo](#demo)
 - [Architecture](#architecture)
   - [Pipeline Overview](#pipeline-overview)
   - [The 10-Node LangGraph Pipeline](#the-10-node-langgraph-pipeline)
@@ -63,6 +64,10 @@ Given a GitHub repository URL, the agent:
    - An **AI-readiness report** with radar chart data, a verdict, and a prioritized action plan
 
 ---
+
+## Demo
+
+<video src="https://github.com/The-A-Stack/codebase-onboarding-agent/raw/main/media/codebase-onboarding-agent-demo.mov" width="100%" controls></video>
 
 ## Architecture
 
