@@ -713,67 +713,224 @@ code {
 
 /* --- Agent Files Tab --- */
 
-.file-tabs {
+/* --- Agent Files Tab --- */
+
+.af-header {
   display: flex;
-  gap: 4px;
-  margin-bottom: 16px;
-  overflow-x: auto;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 12px;
+  gap: 16px;
 }
 
-.file-tab-btn {
-  padding: 8px 14px;
+.af-file-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.af-btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  flex-shrink: 0;
+}
+
+.af-btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.af-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
   border: 1px solid var(--border);
   background: var(--bg);
-  border-radius: var(--radius);
+  border-radius: var(--radius) var(--radius) 0 0;
   font-size: 13px;
   font-family: var(--mono);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s;
+  transition: all 0.15s;
+  color: var(--text-light);
+  position: relative;
 }
 
-.file-tab-btn.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
+.af-tab:hover {
+  background: var(--bg-card);
+  color: var(--text);
 }
 
-.file-toolbar {
+.af-tab.active {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: #334155;
+  border-bottom-color: #1e293b;
+}
+
+.af-tab-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
   display: flex;
-  gap: 8px;
   align-items: center;
-  margin-bottom: 16px;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--primary-light);
+  color: var(--primary);
 }
 
-.verify-badge {
+.af-tab.active .af-tab-icon {
+  background: rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+}
+
+.af-tab-name {
+  font-size: 13px;
+}
+
+.af-tab-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--warning);
+  flex-shrink: 0;
+}
+
+/* Toolbar */
+
+.af-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.af-toolbar-left,
+.af-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.af-verify {
   background: rgba(255, 152, 0, 0.15);
   color: var(--warning);
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 11px;
   font-weight: 600;
-  margin-right: auto;
 }
 
-.file-editor-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+.af-modified {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
-.code-editor {
-  width: 100%;
+.af-line-count {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.af-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+
+.af-btn-secondary {
+  background: #334155;
+  color: #e2e8f0;
+  border-color: #475569;
+}
+
+.af-btn-secondary:hover {
+  background: #475569;
+}
+
+.af-btn-ghost {
+  background: transparent;
+  color: #94a3b8;
+  border-color: #475569;
+}
+
+.af-btn-ghost:hover {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.af-btn-success {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+/* Editor area */
+
+.af-editor-wrapper {
+  display: flex;
+  border: 1px solid #334155;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: #1e293b;
+  overflow: hidden;
   min-height: 500px;
-  max-height: 600px;
+  max-height: 75vh;
+}
+
+.af-line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  min-width: 48px;
+  text-align: right;
   font-family: var(--mono);
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
+  color: #475569;
+  user-select: none;
+  border-right: 1px solid #334155;
+  background: #172033;
+  overflow: hidden;
+}
+
+.af-line-numbers span {
+  padding: 0 12px 0 8px;
+}
+
+.af-editor {
+  flex: 1;
+  width: 100%;
+  min-height: 500px;
+  max-height: 75vh;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
   padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
-  color: var(--text);
-  resize: vertical;
+  border: none;
+  background: #1e293b;
+  color: #e2e8f0;
+  resize: none;
+  outline: none;
+  overflow-y: auto;
+  tab-size: 2;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
 }
 
 /* --- Dashboard Tab --- */
@@ -1094,8 +1251,8 @@ code {
     min-width: unset;
   }
 
-  .file-editor-container {
-    grid-template-columns: 1fr;
+  .af-editor-wrapper {
+    max-height: 60vh;
   }
 
   .dashboard-body {
