@@ -78,7 +78,7 @@ The system is built around a **stateful, multi-node LangGraph pipeline** with cy
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                          FRONTEND (React)                               │
-│   SubmitPage  ──►  ProgressPage (WebSocket)  ──►  ResultsPage          │
+│   SubmitPage  ──►  ProgressPage (WebSocket)  ──►  ResultsPage           │
 │                                                   ├─ ReportTab          │
 │                                                   ├─ DashboardTab       │
 │                                                   ├─ AgentFilesTab      │
@@ -87,9 +87,9 @@ The system is built around a **stateful, multi-node LangGraph pipeline** with cy
                                │ REST + WebSocket
 ┌──────────────────────────────▼──────────────────────────────────────────┐
 │                        BACKEND (FastAPI)                                │
-│   /api/analyze (POST)  ──►  Job Queue  ──►  LangGraph Pipeline         │
-│   /api/progress/{id} (WS)   In-Memory       astream_events            │
-│   /api/qa (POST)            Job Manager      Pipeline → state          │
+│   /api/analyze (POST)  ──►  Job Queue  ──►  LangGraph Pipeline          │
+│   /api/progress/{id} (WS)   In-Memory       astream_events              │
+│   /api/qa (POST)            Job Manager      Pipeline → state           │
 └──────────────────────────────┬──────────────────────────────────────────┘
                                │
         ┌──────────────────────┼───────────────────────┐
