@@ -67,7 +67,7 @@ Given a GitHub repository URL, the agent:
 
 ## Demo
 
-<video src="https://github.com/The-A-Stack/codebase-onboarding-agent/raw/main/media/codebase-onboarding-agent-demo.mov" width="100%" controls></video>
+<video src="https://github.com/The-A-Stack/codebase-onboarding-agent/raw/main/media/codebase-onboarding-agent-demo.mp4" width="100%" controls></video>
 
 ## Architecture
 
