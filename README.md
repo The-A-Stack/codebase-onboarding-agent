@@ -8,6 +8,10 @@ An intelligent, LangGraph-powered pipeline that analyzes any GitHub repository a
 [![LangGraph](https://img.shields.io/badge/LangGraph-0.4-orange.svg)](https://github.com/langchain-ai/langgraph)
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev)
 
+<p align="center">
+  <img src="media/codebase-onboarding-agent.png" alt="Codebase Onboarding Agent — Input → Process → Output overview" width="100%">
+</p>
+
 ---
 
 ## Table of Contents
